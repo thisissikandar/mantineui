@@ -175,7 +175,7 @@ export function Register() {
         <Button
           fullWidth
           onClick={handleRegisterSubmit}
-          disabled={mutation?.isPending}
+          loading={mutation.isLoading}
           mt="xl"
         >
           {mutation?.isPending && <Loader size={30} />} <span>Sign up</span>

@@ -46,7 +46,7 @@ export default function App() {
         header={
           <Header height={60} p="xs">
             <Group position="apart">
-              <Title order={3}>SpaceX Explorer</Title>
+              <Title order={3}>Mantineui</Title>
               <Group>
                 <>
                  

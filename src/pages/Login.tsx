@@ -46,7 +46,7 @@ export function Login() {
     console.log("data", { email, password });
 
     if (!email || !password) {
-      return alert("Please enter email and password");
+      return toast("Please enter email and password");
     }
 
     mutation.mutate({ email, password });
@@ -83,7 +83,13 @@ export function Login() {
             Forgot password?
           </Anchor>
         </Group>
-        <Button fullWidth onClick={handleLoginSubmit} mt="xl">
+        <Button
+          fullWidth
+          onClick={handleLoginSubmit}
+          mt="xl"
+          
+          loading={mutation.isLoading}
+        >
           Sign in
         </Button>
       </Paper>
