@@ -13,7 +13,6 @@ You can either register a new user or use the following credentials to log in:
   - Email: demo@gmail.com
   - Password: Demo@123
 
-
 ---
 
 ## 📌 Features Implemented
@@ -28,24 +27,32 @@ You can either register a new user or use the following credentials to log in:
 - Displays error/success messages accordingly.
 
 ### 📄 Resource List Page
-- Data fetched from **[insert API name here, e.g., SpaceX API]**.
+- Data fetched from **DummyJSON Users API**.
 - Displayed using **Mantine Table** with:
   - Search
   - Sorting
   - Pagination
+  - **Action column with a "View Details" button**:  
+    Each row includes a red "eye" icon button. Clicking this button navigates to the enriched details page for that user.
+
+### 👁️ View Details Action (Highlight)
+- In the user table, the last column features a **"View Details"** action button (red eye icon).
+- Clicking this button takes you to the user's detail page, where you can see:
+  - Full user profile (with Mantine Cards, Tabs, Badges, Accordions, etc.)
+  - Enriched data such as the user's posts, company info, and more.
 
 ### 📘 Resource Detail Page
-- Detailed information view of a selected resource using route parameters.
-- Rich UI using Mantine components (`Card`, `Accordion`, etc.).
+- Detailed information view of a selected user using route parameters.
+- Rich UI using Mantine components (`Card`, `Accordion`, `Tabs`, etc.).
 
 ### 🔁 Data Enrichment
-- On the detail page, a second API call fetches related data.
+- On the detail page, a second API call fetches related data (e.g., user's posts).
 - Combines base and enriched data into one cohesive UI.
 
 ### 🔗 Deep Linking
 - Resource detail pages accessible via:
-  - Path params: `/resource/:id`
-  - Query params: `/resource?id=123`
+  - Path params: `/home/:id`
+  - (Can be extended to support query params as well)
 
 ---
 
@@ -67,3 +74,4 @@ git clone https://github.com/thisissikandar/mantineui
 cd mantineui
 npm install
 npm run dev
+```

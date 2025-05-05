@@ -5,6 +5,7 @@ import { Login } from "./pages/Login";
 import { Register } from "./pages/Register";
 import AuthLayout from "./layoutes/AuthLayout";
 import DetailPage from "./pages/DetailsPage";
+import { NotFoundPage } from "./components/Notfound/Notfound";
 
 const router = createBrowserRouter([
   {
@@ -38,6 +39,10 @@ const router = createBrowserRouter([
         element: <Register />,
       },
     ],
+  },
+  {
+    path: "*",
+    element: <NotFoundPage />,
   },
 ]);
 export default router;

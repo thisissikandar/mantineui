@@ -28,7 +28,7 @@ export function Login() {
     mutationFn: login,
     onSuccess: (response) => {
       setToken(response.data.token);
-      toast.success("Login Successfull please login to continue");
+      toast.success("Login Successfull");
       navigate("/home");
     },
     onError: (err) => {

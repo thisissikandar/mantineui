@@ -4,7 +4,16 @@ import {
   useMantineReactTable,
   type MRT_ColumnDef,
 } from "mantine-react-table";
-import { ActionIcon, Button, Flex, Text, Tooltip } from "@mantine/core";
+import {
+  ActionIcon,
+  Button,
+  Center,
+  Flex,
+  Loader,
+  Text,
+  Title,
+  Tooltip,
+} from "@mantine/core";
 type User = {
   id: number;
   firstName: string;
@@ -17,7 +26,6 @@ type User = {
   };
 };
 
-
 import { FC } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { IconEye, IconTrash } from "@tabler/icons-react";
@@ -28,9 +36,9 @@ const Landing: FC = () => {
 
   function useGetUsers() {
     return useQuery<User[]>({
-      queryKey: ['users'],
+      queryKey: ["users"],
       queryFn: async () => {
-        const res = await fetch('https://dummyjson.com/users');
+        const res = await fetch("https://dummyjson.com/users");
         const data = await res.json();
         return data.users as User[];
       },
@@ -48,13 +56,12 @@ const Landing: FC = () => {
       {
         accessorKey: "firstName",
         header: "First Name",
-        size: 70
+        size: 70,
       },
       {
         accessorKey: "lastName",
         header: "Last Name",
-        size: 80
-
+        size: 80,
       },
       {
         accessorKey: "email",
@@ -67,14 +74,12 @@ const Landing: FC = () => {
       {
         accessorKey: "address.city",
         header: "City",
-        size: 80
-
+        size: 80,
       },
       {
         accessorKey: "address.state",
         header: "State",
-        size: 80
-
+        size: 80,
       },
     ],
     []
@@ -82,32 +87,48 @@ const Landing: FC = () => {
 
   const table = useMantineReactTable({
     columns,
-    data:fetchedUsers,
+    data: fetchedUsers,
     enableEditing: true,
     enableRowActions: true,
     positionActionsColumn: "last",
     renderRowActions: ({ row }) => (
       <Tooltip label="View Details" withArrow>
-        <ActionIcon color="red" onClick={() => navigate(`/home/${row.original.id}`)}>
+        <ActionIcon
+          color="red"
+          onClick={() => navigate(`/home/${row.original.id}`)}
+        >
           <IconEye />
         </ActionIcon>
       </Tooltip>
     ),
     mantineToolbarAlertBannerProps: isLoadingUsersError
-    ? {
-        color: 'red',
-        children: 'Error loading data',
-      }
-    : undefined,
+      ? {
+          color: "red",
+          children: "Error loading data",
+        }
+      : undefined,
     mantineTableContainerProps: {
       sx: {
-        minHeight: '500px',
+        minHeight: "500px",
       },
     },
   });
+  if (isLoadingUsers) {
+    return (
+      <Center style={{ minHeight: 400 }}>
+        <Loader size="lg" />
+      </Center>
+    );
+  }
 
-
-  return <MantineReactTable  table={table} />;
+  return (
+    <>
+      <Title order={2} mb="md">
+       All Users
+      </Title>{" "}
+      <MantineReactTable table={table} />
+    </>
+  );
 };
 
 export default Landing;
